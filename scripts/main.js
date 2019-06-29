@@ -2,6 +2,8 @@ var mozzila = document.querySelector(".mozzila");
 var container = document.querySelector(".container");
 
 mozzila.addEventListener("mousedown", function(evt) {
+    evt.preventDefault();
+
     var limits = {
         left: container.offsetLeft,
         right: container.offsetLeft + container.offsetWidth,
@@ -23,6 +25,8 @@ mozzila.addEventListener("mousedown", function(evt) {
     };    
 
     var onMouseMove = function(evtMove) {
+        evtMove.preventDefault();
+
         var shift = {
             x: startCoordinates.x - evtMove.clientX,
             y: startCoordinates.y - evtMove.clientY
@@ -53,7 +57,9 @@ mozzila.addEventListener("mousedown", function(evt) {
         
     };
 
-    var onMouseUp = function() {
+    var onMouseUp = function(evtUp) {
+        evtUp.preventDefault();
+        
         document.removeEventListener("mousemove", onMouseMove);
         document.removeEventListener("mouseup", onMouseUp);
     };
